@@ -13,8 +13,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectName: Pie
   pointsWorth: 20
-  meterFill: 10
+  meterFill: 20
   timeTillBad: 2
   timeTillWorse: 3
-  apperance: {fileID: 0}
-  apperanceBad: {fileID: 0}

@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public interface Islider {
-    Slider Slider { get; }
+public interface Imodifiable<T> {
 
-    void Modifiy(int fillAmount);
+    void Modifiy(T pointsGained);
 }

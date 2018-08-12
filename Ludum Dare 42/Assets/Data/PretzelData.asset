@@ -9,10 +9,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0833d7dc4b3c91c4dbba144c0f3ac3f6, type: 3}
-  m_Name: AppleData
+  m_Name: Pretzel
   m_EditorClassIdentifier: 
-  objectName: Apple
-  pointsWorth: 5
-  meterFill: 2
-  timeTillBad: 1
-  timeTillWorse: 0.5
+  objectName: 
+  pointsWorth: 0
+  meterFill: 0
+  timeTillBad: 0
+  timeTillWorse: 0

@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FoodManager: MonoBehaviour {
+public class FoodManager: MonoBehaviour, Iobserver {
+
+    private const float heightIncrease = 2;
 
     // All the food prefabs in the game
     public GameObject[] foodsProperties;
@@ -12,19 +14,23 @@ public class FoodManager: MonoBehaviour {
     public Image nextSprite; 
     public int maxInPlay;
 
-    private const float heightIncrease = 2;
+    private ObjectActions[] foodsInPlay;
 
-    private Transform[] foodsInPlay;
+    private Subject subject;
     
     //This is where we store the next item that is going to come out
     private GameObject next;
 
     // The current item we are hovering over
     private int currentIndex;
+    private bool isActive;
 
     private void Start()
     {
-        foodsInPlay = new Transform[maxInPlay];
+        foodsInPlay = new ObjectActions[maxInPlay];
+
+        subject = GetComponent<Subject>();
+        subject.addObserver(this); 
 
         next = null;
 
@@ -36,18 +42,31 @@ public class FoodManager: MonoBehaviour {
 
         currentIndex = 0;
         activateFood(1);
+
+        isActive = true;
     }
 
     private void Update()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
 
-        if(Input.GetButtonDown("Horizontal"))
-            ChangeFoodChoice((int)horizontal);
+        if (isActive)
+        {
+            if (Input.GetButtonDown("Horizontal"))
+                ChangeFoodChoice((int)horizontal);
 
-        if (Input.GetButtonDown("Submit"))
-            DestroyFood();
+            if (Input.GetButtonDown("Submit"))
+                DestroyFood(currentIndex);
+        }
+    }
 
+    private void LateUpdate()
+    {
+        for (int i = 0; i < maxInPlay; i++)
+        {
+            if ( isActive && foodsInPlay[i].isThrownOut)
+                DestroyFood(i);
+        }
     }
 
     private void ChangeFoodChoice(int direction)
@@ -66,17 +85,18 @@ public class FoodManager: MonoBehaviour {
     /// <param name="verticalDirection">1: Represents the object moves up. -1: Represents it moves down</param>
     private void activateFood(int verticalDirection)
     {
-        Vector2 newPosition = foodsInPlay[currentIndex].position;
+        Vector2 newPosition = foodsInPlay[currentIndex].transform.position;
         newPosition.y += (heightIncrease * verticalDirection);
 
-        foodsInPlay[currentIndex].position = newPosition;
+        foodPosition[currentIndex] = newPosition;
+        foodsInPlay[currentIndex].transform.position = newPosition;
     }
 
     // Spawns the food that is going to be on the stage
     private void SpawnFood(int index)
     {
         GameObject hold = Instantiate(next, foodPosition[index], Quaternion.identity);
-        foodsInPlay[index] = hold.GetComponent<Transform>();
+        foodsInPlay[index] = hold.GetComponent<ObjectActions>();
         GetFood();
     }
 
@@ -87,10 +107,17 @@ public class FoodManager: MonoBehaviour {
         nextSprite.sprite = next.GetComponent<SpriteRenderer>().sprite;
     }
 
-    private void DestroyFood()
+    private void DestroyFood(int index)
     {
-        Destroy(foodsInPlay[currentIndex].gameObject);
-        SpawnFood(currentIndex);
-        activateFood(1);
+        Destroy(foodsInPlay[index].gameObject);
+        SpawnFood(index);
+
+        if (foodsInPlay[index].isThrownOut)
+            activateFood(1);
+    }
+
+    public void Notify(Event type)
+    {
+        isActive = false;
     }
 }

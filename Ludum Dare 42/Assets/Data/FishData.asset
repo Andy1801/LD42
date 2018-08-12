@@ -11,10 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0833d7dc4b3c91c4dbba144c0f3ac3f6, type: 3}
   m_Name: FishData
   m_EditorClassIdentifier: 
-  objectName: 
-  pointsWorth: 0
-  meterFill: 0
-  timeTillBad: 0
-  timeTillWorse: 0
-  apperance: {fileID: 0}
-  apperanceBad: {fileID: 0}
+  objectName: Fish
+  pointsWorth: 10
+  meterFill: 7
+  timeTillBad: 1.5
+  timeTillWorse: 0.7
