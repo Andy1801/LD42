@@ -9,10 +9,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0833d7dc4b3c91c4dbba144c0f3ac3f6, type: 3}
-  m_Name: Honey
+  m_Name: HoneyData
   m_EditorClassIdentifier: 
-  objectName: 
-  pointsWorth: 0
-  meterFill: 0
-  timeTillBad: 0
-  timeTillWorse: 0
+  objectName: Honey
+  pointsWorth: 5
+  meterFill: 1
+  timeTillBad: 10
+  badMultipler: 2
+  timeTillWorse: 5
+  spawnRate: 50

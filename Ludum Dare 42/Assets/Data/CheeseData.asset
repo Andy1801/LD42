@@ -9,12 +9,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0833d7dc4b3c91c4dbba144c0f3ac3f6, type: 3}
-  m_Name: FishData
+  m_Name: CheeseData
   m_EditorClassIdentifier: 
-  objectName: Fish
-  pointsWorth: 15
-  meterFill: 5
-  timeTillBad: 1
-  badMultipler: 7
+  objectName: Cheese
+  pointsWorth: 20
+  meterFill: 50
+  timeTillBad: 4
+  badMultipler: 0.2
   timeTillWorse: 2
-  spawnRate: 60
+  spawnRate: 40

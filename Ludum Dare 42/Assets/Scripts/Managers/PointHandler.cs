@@ -8,6 +8,7 @@ public class PointHandler : MonoBehaviour, Imodifiable<int> {
     public int points;
 
     public Text pointsText;
+    public Text goalText;
 
     private int currentPoints;
 
@@ -16,6 +17,8 @@ public class PointHandler : MonoBehaviour, Imodifiable<int> {
     private void Start()
     {
         points *= GameManager.level;
+
+        goalText.text = "Goal: " + points.ToString(); 
 
         ChangeScore();
     }

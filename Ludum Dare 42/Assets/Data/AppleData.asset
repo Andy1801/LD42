@@ -13,6 +13,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectName: Apple
   pointsWorth: 5
-  meterFill: 2
-  timeTillBad: 1
-  timeTillWorse: 0.5
+  meterFill: 5
+  timeTillBad: 2
+  badMultipler: 1.2
+  timeTillWorse: 1
+  spawnRate: 90

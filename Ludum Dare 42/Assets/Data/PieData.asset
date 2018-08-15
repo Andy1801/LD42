@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Name: PieData
   m_EditorClassIdentifier: 
   objectName: Pie
-  pointsWorth: 20
-  meterFill: 20
-  timeTillBad: 2
+  pointsWorth: 50
+  meterFill: 80
+  timeTillBad: 5
+  badMultipler: 1.5
   timeTillWorse: 3
+  spawnRate: 35

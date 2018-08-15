@@ -16,4 +16,6 @@ public class ObjectStats : ScriptableObject {
 
     // How much time before the object becomes worse after it has passed the time till bad
     public float timeTillWorse;
+
+    public int spawnRate;
 }

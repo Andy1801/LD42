@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ObjectActions : MonoBehaviour
 {
@@ -46,6 +47,7 @@ public class ObjectActions : MonoBehaviour
             if (timeTillBad - Time.time <= 0.0f)
             {
                 isBad = true;
+                spriteRenderer.color = Color.black;
                 baseMeterFilled *= properties.badMultipler;
             }
 
@@ -70,13 +72,14 @@ public class ObjectActions : MonoBehaviour
 
     private void OnDestroy()
     {
-        Debug.Log(properties.objectName + " has been destoried");
-
         //Increasing both the fill meter and the points gained
         if (!isThrownOut)
         {
-            modifiySlider.Modifiy((int)baseMeterFilled);
-            modifiyPoints.Modifiy(properties.pointsWorth);
+            if (modifiyPoints != null && modifiySlider != null)
+            {
+                modifiyPoints.Modifiy(properties.pointsWorth);
+                modifiySlider.Modifiy((int)baseMeterFilled);
+            }
         }
     }
 }

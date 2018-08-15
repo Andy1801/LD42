@@ -13,6 +13,7 @@ public class FoodManager: MonoBehaviour, Iobserver {
 
     public Image nextSprite; 
     public int maxInPlay;
+    public float percantageFoodDecrease;
 
     private ObjectActions[] foodsInPlay;
 
@@ -103,7 +104,33 @@ public class FoodManager: MonoBehaviour, Iobserver {
     // Chooses a random food from foodsProperties array
     private void GetFood()
     {
-        next = foodsProperties[Random.Range(0, foodsProperties.Length)];
+        //next = foodsProperties[Random.Range(0, foodsProperties.Length)];
+
+        next = null;
+
+        // Holds the potential next food to come
+        ObjectActions hold;
+
+        while(next == null)
+        {
+            hold = foodsProperties[Random.Range(0, foodsProperties.Length)].GetComponent<ObjectActions>();
+
+            float random = hold.properties.spawnRate;
+
+            for(int i = 0; i < foodsInPlay.Length; i++)
+            {
+                if (foodsInPlay[i] == null)
+                    continue;
+                else if (foodsInPlay[i].properties == hold.properties)
+                    random -= (((random / 100) * (percantageFoodDecrease / 100)) * 100);
+            }
+            int randomTemp = Random.Range(0, 100);
+
+            if (randomTemp <= random)
+                next = hold.gameObject;
+
+        }
+
         nextSprite.sprite = next.GetComponent<SpriteRenderer>().sprite;
     }
 

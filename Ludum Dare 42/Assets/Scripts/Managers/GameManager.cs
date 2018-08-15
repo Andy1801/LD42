@@ -39,7 +39,13 @@ public class GameManager : MonoBehaviour, Iobserver {
         gameOver = true;
         gameOverText.gameObject.SetActive(true);
 
-        if (pointHandler.CurrentPoints >= pointHandler.points)
+        if(pointHandler.points >= 225)
+        {
+            gameOverText.text = "You win!";
+            restartText.text = "Restart";
+            level = 1;
+        }
+        else if (pointHandler.CurrentPoints >= pointHandler.points)
         {
             gameOverText.text = "You win!";
             restartText.text = "Next Level";
@@ -53,12 +59,6 @@ public class GameManager : MonoBehaviour, Iobserver {
         }
 
         exitText.text = "Exit";
-    }
-
-    //Called when restart button is pressed
-    public void RestartGame()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void Notify(Event type)
